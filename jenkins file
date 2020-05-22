@@ -3,13 +3,11 @@ pipeline {
   stages {
     stage ('build') {
       steps {
-	    echo 'cloning from git'
-	    script{
-            sh 'gradle dileep'     
+	    echo 'build'
+            sh 'gradle'     
 	  }
     	}
    }
- }
     
     
     

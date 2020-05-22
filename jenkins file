@@ -8,7 +8,7 @@ pipeline {
 	  }
     }
   }
-    stage ('BUILD') {
+    stage ('Build') {
       steps {
         echo 'build.'
 		sh 'whoami'

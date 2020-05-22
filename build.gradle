@@ -1,0 +1,5 @@
+task dileep << {
+   String expString = 'ANANTHA dileep'
+   println "Original: " + expString
+   println "Upper case: " + expString.toUpperCase()
+}

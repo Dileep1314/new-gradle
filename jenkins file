@@ -10,8 +10,10 @@ pipeline {
   }
     stage ('Build') {
         echo 'building gradle'
+        steps {
         sh 'whoami'
         sh 'gradle dileep'
+       }
     }
 }
 			

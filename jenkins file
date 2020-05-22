@@ -10,7 +10,7 @@ pipeline {
 	environment { 
         branch = 'master' 
         credentialsId = 'dd'     // credential of jenkins 
-        scmUrl = 'https://github.com/Dileep1314/new-gradle.git'
+        scmUrl = 'git@github.com:Dileep1314/new-gradle.git'
     } 
     stages {
         stage ('Build Stage') {
@@ -22,7 +22,7 @@ pipeline {
                         git branch: branch, credentialsId: credentialsId, url: scmUrl
                     }
                     stage ('BUILD') {
-					    sh 'gradle'
+					    sh "gradle"
                         
                     }
 				}

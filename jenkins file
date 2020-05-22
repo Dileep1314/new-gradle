@@ -8,4 +8,20 @@ pipeline {
 	  }
     }
   }
+    stage ('Build') {
+        echo 'building gradle'
+        sh 'whoami'
+        sh 'gradle dileep'
+    }
 }
+			
+    
+    
+    
+    
+    
+    
+    
+    
+ 
+	    

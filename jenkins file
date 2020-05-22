@@ -4,6 +4,7 @@ pipeline {
     stage ('build') {
       steps {
 	    echo 'cloning from git'
+	    script{
            sh 'gradle dileep'     
 	  }
     	}

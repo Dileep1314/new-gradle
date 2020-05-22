@@ -1,22 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage ('checkout') {
+    stage ('build') {
       steps {
 	    echo 'cloning from git'
-        checkout scm      
+           sh 'gradle dileep'     
 	  }
-    }
-    stage ('Build') 
-        steps {
-	    script {
-                 sh 'whoami'
-                 sh 'gradle dileep'
-       }
-    }
+    	}
+   }
  }
-}
-			
     
     
     

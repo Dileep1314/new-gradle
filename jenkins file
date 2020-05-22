@@ -8,11 +8,4 @@ pipeline {
 	  }
     }
   }
-    stage ('Build') {
-      steps {
-        echo 'build.'
-		sh 'whoami'
-		sh 'gradle dileep'
-      }
-    }
-  }
+}

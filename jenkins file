@@ -9,7 +9,7 @@ pipeline {
     options { skipDefaultCheckout() }
 	environment { 
         branch = 'master' 
-        credentialsId = 'dd'     // credential of jenkins 
+        credentialsId = 'dileepkey'     // credential of jenkins 
         scmUrl = 'git@github.com:Dileep1314/new-gradle.git'
     } 
     stages {

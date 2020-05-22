@@ -10,11 +10,13 @@ pipeline {
     stage ('Build') 
         steps {
 	    script {
+	        try {
                  sh 'whoami'
                  sh 'gradle dileep'
        }
     }
  }
+}
 }
     
     

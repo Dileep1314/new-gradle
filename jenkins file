@@ -7,18 +7,14 @@ pipeline {
         checkout scm      
 	  }
     }
-    stage ('Build') 
+    stage ('Build') {
         steps {
-	    script {
-	        try {
-                 sh 'whoami'
-                 sh 'gradle dileep'
+            sh 'whoami'
+            sh 'gradle dileep'
        }
     }
  }
 }
-}
-    
     
  
 	    

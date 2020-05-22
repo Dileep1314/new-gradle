@@ -1,18 +1,18 @@
 pipeline {
-  agent any
-  stages {
-    stage ('checkout') {
-      steps {
-	    echo 'cloning from git'
-        checkout scm      
-	  }
-    }
-    stage ('Build') 
-        steps {
-	    script {
-                 sh 'whoami'
-                 sh 'gradle dileep'
-       }
-    }
- }
-}
+agent none
+   stages {
+        stage ('Build Stage') {
+            steps {
+                script {
+                    stage ('Checkout') {
+                        echo 'THIS IS FOR CLONEING'
+                        git branch: master, credentialsId: dd url: https://github.com/Dileep1314/new-gradle.git
+                    }
+		}
+	 }
+        }		
+				stage ('BUILD') {
+                        sh 'gradle build'
+                    }
+                }
+	}	

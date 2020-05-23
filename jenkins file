@@ -22,7 +22,7 @@ pipeline {
                         git branch: branch, credentialsId: credentialsId, url: scmUrl
                     }
                     stage ('BUILD') {
-					    sh './gradlew dileep'
+					    sh './gradlew tasks'
                         
                     }
 				}

@@ -22,8 +22,7 @@ pipeline {
                         git branch: branch, credentialsId: credentialsId, url: scmUrl
                     }
                     stage ('BUILD') {
-					    sh 'gradle clean' 
-					    sh 'gradle build'
+					    sh 'gradle tasks'
                         
                     }
 				}

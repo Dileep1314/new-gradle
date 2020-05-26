@@ -26,7 +26,8 @@ pipeline {
                         
                     }
 				}
-			
+			}
+    }
  post {
 												success {
 													slackSend(
@@ -51,7 +52,7 @@ pipeline {
 		}
 		
 		
-			
+	}		
     
 	}
 	

@@ -22,7 +22,7 @@ pipeline {
                         git branch: branch, credentialsId: credentialsId, url: scmUrl
                     }
                     stage ('BUILD') {
-					    sh 'gradle tsak '
+					    sh 'gradle task '
                         
                     }
 				}
@@ -32,7 +32,7 @@ pipeline {
 
 post {
         success {
-            slackSend channel: '#testin123',
+            slackSend channel: '#testing123',
             teamDomain: 'ibm-appops',
             token: "DqzedffuiSvvxBd1xiDOXuiC",
             color: COLOR_MAP[currentBuild.currentResult],

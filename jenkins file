@@ -34,7 +34,7 @@ pipeline {
  post {
 												success {
 													slackSend(
-														teamDomain: ibm-appops.slack.com,
+													teamDomain: ibm-appops,
 														token: DqzedffuiSvvxBd1xiDOXuiC,
 														channel: '#testing123',
 														color: 'good',
@@ -43,7 +43,7 @@ pipeline {
 												}
 												failure {
 													slackSend(
-														teamDomain: ibm-appops.slack.com,
+														teamDomain: ibm-appops,
 												                token: DqzedffuiSvvxBd1xiDOXuiC,
 														channel: '#testing123',
 														color: 'danger',

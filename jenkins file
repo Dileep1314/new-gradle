@@ -34,20 +34,20 @@ pipeline {
  post {
 												success {
 													slackSend(
-															teamDomain: "AppOps-DST",
-															token: "DqzedffuiSvvxBd1xiDOXuiC",
-															channel: "#testing123",
-															color: "good",
-															message: "Jenkins build is success"
+														teamDomain: AppOps-DST,
+														token: DqzedffuiSvvxBd1xiDOXuiC,
+														channel: '#testing123',
+														color: 'good',
+														message: "Jenkins build is success"
 													)
 												}
 												failure {
 													slackSend(
-															teamDomain: "AppOps-DST",
-															token: "DqzedffuiSvvxBd1xiDOXuiC",
-															channel: "#testing123",
-															color: "danger",
-															message: "Jenkins build is failed "
+														teamDomain: AppOps-DST,
+												                token: DqzedffuiSvvxBd1xiDOXuiC,
+														channel: '#testing123',
+														color: 'danger',
+													        message: "Jenkins build is failed "
 													)
 												}
                                                                                               }

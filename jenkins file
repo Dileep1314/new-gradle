@@ -30,27 +30,21 @@ pipeline {
 		}
     }
 
-
- post {
-												success {
-													slackSend(
-													teamDomain: ibm-appops,
-														token: DqzedffuiSvvxBd1xiDOXuiC,
-														channel: '#testing123',
-														color: 'good',
-														message: "Jenkins build is success"
-													)
-												}
-												failure {
-													slackSend(
-														teamDomain: ibm-appops,
-												                token: DqzedffuiSvvxBd1xiDOXuiC,
-														channel: '#testing123',
-														color: 'danger',
-													        message: "Jenkins build is failed "
-													)
-												}
-                                                                                              }
-											      }
-
-
+post {
+        success {
+            slackSend channel: '#testin',
+            teamDomain: 'ibm-appops',
+            token: "M5HA5lo5E8ye1KExCJiAymww",
+            color: COLOR_MAP[currentBuild.currentResult],
+            message: "Jenkins build is success for ${JOB_NAME}- check the output log  <${env.BUILD_URL}|here>"
+            //message: "${icons[randomIndex]} *${currentBuild.currentResult}:* Job ${JOB_NAME} build ${BUILD_NUMBER} \n More info at: ${BUILD_URL}"
+        }
+        failure {
+            slackSend channel: '#testin',
+            teamDomain: 'ibm-appops',
+            token: "M5HA5lo5E8ye1KExCJiAymww",
+            color: COLOR_MAP[currentBuild.currentResult],
+            message: "${icons1[randomIndex1]} *${currentBuild.currentResult}:* \n More info at: ${BUILD_URL}"
+        }
+ }
+ }

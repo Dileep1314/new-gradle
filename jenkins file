@@ -31,20 +31,15 @@ pipeline {
     }
 
 post {
-        success {
-            slackSend channel: '#testing123',
-            teamDomain: 'ibm-appops',
-            token: "DqzedffuiSvvxBd1xiDOXuiC",
-            color: COLOR_MAP[currentBuild.currentResult],
-            message: "Jenkins build is success for ${JOB_NAME}- check the output log  <${env.BUILD_URL}|here>"
-            //message: "${icons[randomIndex]} *${currentBuild.currentResult}:* Job ${JOB_NAME} build ${BUILD_NUMBER} \n More info at: ${BUILD_URL}"
-        }
-        failure {
-            slackSend channel: '#testing123',
-            teamDomain: 'ibm-appops',
-            token: "DqzedffuiSvvxBd1xiDOXuiC",
-            color: COLOR_MAP[currentBuild.currentResult],
-            message: "${icons1[randomIndex1]} *${currentBuild.currentResult}:* \n More info at: ${BUILD_URL}"
-        }
- }
+  success {
+    withCredentials([usernamePassword(credentialsId: 'dd', usernameVariable: 'dileep1314', passwordVariable: '@Dileep24')]) {
+      sh 'curl -X POST --user dileep1314:@Dileep24 --data  "{\\"state\\": \\"success\\"}" --url https://github.com/Dileep1314/new-gradle.git//statuses/$GIT_COMMIT'
+    }
+  }
+  failure {
+    withCredentials([usernamePassword(credentialsId: 'your_credentials_id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+      sh 'curl -X POST --user $USERNAME:$PASSWORD --data  "{\\"state\\": \\"failure\\"}" --url $GITHUB_API_URL/statuses/$GIT_COMMIT'
+    }
+  }
+}
  }

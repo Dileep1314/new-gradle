@@ -22,15 +22,7 @@ pipeline {
                         git branch: branch, credentialsId: credentialsId, url: scmUrl
                     }
                     stage ('BUILD') {
-					    sh 'task incrementBetaVersion {
-   doLast {
-task dileep << {
-   String expString = 'ANANTHA dileep'
-   println "Original: " + expString
-   println "Upper case: " + expString.toUpperCase()
-  }
- }
-} '
+					    sh 'gradle tsak '
                         
                     }
 				}

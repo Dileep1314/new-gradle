@@ -32,13 +32,13 @@ pipeline {
 
 post {
   success {
-    withCredentials([usernamePassword(credentialsId: 'dd', usernameVariable: 'dileep1314', passwordVariable: '@Dileep24')]) {
+    withCredentials([usernamePassword(credentialsId: 'dileep1314', usernameVariable: 'dileep1314', passwordVariable: '@Dileep24')]) {
       sh 'curl -X POST --user dileep1314:@Dileep24 --data  "{\\"state\\": \\"success\\"}" --url https://github.com/Dileep1314/new-gradle.git//statuses/$GIT_COMMIT'
     }
   }
   failure {
-    withCredentials([usernamePassword(credentialsId: 'your_credentials_id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-      sh 'curl -X POST --user $USERNAME:$PASSWORD --data  "{\\"state\\": \\"failure\\"}" --url $GITHUB_API_URL/statuses/$GIT_COMMIT'
+    withCredentials([usernamePassword(credentialsId: 'dileep1314', usernameVariable: 'dileep1314', passwordVariable: '@Dileep24')]) {
+      sh 'curl -X POST --user dileep1314:@Dileep24 --data  "{\\"state\\": \\"failure\\"}" --url https://github.com/Dileep1314/new-gradle.git/statuses/$GIT_COMMIT'
     }
   }
 }

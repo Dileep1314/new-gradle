@@ -32,17 +32,17 @@ pipeline {
 
 post {
         success {
-            slackSend channel: '#testin',
+            slackSend channel: '#testin123',
             teamDomain: 'ibm-appops',
-            token: "M5HA5lo5E8ye1KExCJiAymww",
+            token: "DqzedffuiSvvxBd1xiDOXuiC",
             color: COLOR_MAP[currentBuild.currentResult],
             message: "Jenkins build is success for ${JOB_NAME}- check the output log  <${env.BUILD_URL}|here>"
             //message: "${icons[randomIndex]} *${currentBuild.currentResult}:* Job ${JOB_NAME} build ${BUILD_NUMBER} \n More info at: ${BUILD_URL}"
         }
         failure {
-            slackSend channel: '#testin',
+            slackSend channel: '#testing123',
             teamDomain: 'ibm-appops',
-            token: "M5HA5lo5E8ye1KExCJiAymww",
+            token: "DqzedffuiSvvxBd1xiDOXuiC",
             color: COLOR_MAP[currentBuild.currentResult],
             message: "${icons1[randomIndex1]} *${currentBuild.currentResult}:* \n More info at: ${BUILD_URL}"
         }

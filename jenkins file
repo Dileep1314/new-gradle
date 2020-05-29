@@ -30,14 +30,27 @@ pipeline {
 		}
     }
 
- post {
-	success {
-	  echo 'posting success to GitLab'
-          updateGitlabCommitStatus(name: 'jenkins-build', state: 'success')
-  	}
-	failure {
-	  echo 'postinng failure to GitLab'
-          updateGitlabCommitStatus(name: 'jenkins-build', state: 'failed')
-  	}
-  }
+timestamps {
+node('worker') {
+	notifyBuild('Build Started')
+    // Wipe out the workspace
+    deleteDir()
+    
+    stage('Checkout') {
+       checkout scm
+    }
+
+   gitlabCommitStatus{
+   gitlabBuilds(builds: ["Build"]){
+    stage('Build') {
+    gitlabCommitStatus("Build"){
+           try{
+               build steps
+               currentBuild.result = 'SUCCESS'
+               }
+           catch(Exception err){
+               currentBuild.result = 'FAILURE'
+               }
+           }
+}
   }

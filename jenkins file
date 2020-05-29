@@ -30,16 +30,14 @@ pipeline {
 		}
     }
 
-post {
-  success {
-    withCredentials([usernamePassword(credentialsId: 'dileep1314', usernameVariable: 'dileep1314', passwordVariable: '@Dileep24')]) {
-      sh 'curl -X POST --user dileep1314:@Dileep24 --data  "{\\"state\\": \\"success\\"}" --url https://github.com/Dileep1314/new-gradle.git//statuses/$GIT_COMMIT'
-    }
+ post {
+	success {
+	  echo 'posting success to GitLab'
+          updateGitlabCommitStatus(name: 'jenkins-build', state: 'success')
+  	}
+	failure {
+	  echo 'postinng failure to GitLab'
+          updateGitlabCommitStatus(name: 'jenkins-build', state: 'failed')
+  	}
   }
-  failure {
-    withCredentials([usernamePassword(credentialsId: 'dileep1314', usernameVariable: 'dileep1314', passwordVariable: '@Dileep24')]) {
-      sh 'curl -X POST --user dileep1314:@Dileep24 --data  "{\\"state\\": \\"failure\\"}" --url https://github.com/Dileep1314/new-gradle.git/statuses/$GIT_COMMIT'
-    }
   }
-}
- }

@@ -5,7 +5,7 @@ def icons1 = [":Thermometer:", ":Bomb:"]
 def randomIndex = (new Random()).nextInt(icons.size())
 def randomIndex1 = (new Random()).nextInt(icons1.size())
 pipeline {
-   agent  { label ' Android_Slave' }
+   agent any
     options { skipDefaultCheckout() }
 	environment { 
         branch = 'master' 

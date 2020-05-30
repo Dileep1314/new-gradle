@@ -32,7 +32,7 @@ pipeline {
 post {
   success {
      
-      sh 'curl "https://api.GitHub.com/repos/dileep1314/https://github.com/Dileep1314/new-gradle.git/statuses/$GIT_COMMIT?access_token=993612a65cb1754011e7abbdf3808ee110580990" \
+      sh 'curl "https://github.com/Dileep1314/new-gradle.git/statuses/$GIT_COMMIT?access_token=993612a65cb1754011e7abbdf3808ee110580990" \
   -H "Content-Type: application/json" \
   -X POST \
   -d "{\"state\": \"success\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"http://localhost:8080/job/pipiline//$BUILD_NUMBER/console\"}"'

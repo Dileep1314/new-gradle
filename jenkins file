@@ -1,13 +1,53 @@
- pipeline {
-    agent any
-
+def COLOR_MAP = ['SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'danger', 'ABORTED': 'danger']
+//def icons = ['SUCCESS' : 'man_dancing' , 'FAILURE' : 'ghost']
+def icons = [":unicorn_face:",  ":man_dancing:", ":party_parrot:",  ":dancer:"]
+def icons1 = [":Thermometer:", ":Bomb:"]
+def randomIndex = (new Random()).nextInt(icons.size())
+def randomIndex1 = (new Random()).nextInt(icons1.size())
+pipeline {
+   agent  { label ' Android_Slave' }
+    options { skipDefaultCheckout() }
+	environment { 
+        branch = 'master' 
+        credentialsId = 'dd'     // credential of jenkins 
+        scmUrl = 'https://github.com/Dileep1314/new-gradle.git'
+    } 
     stages {
-       stage('gitlab') {
-          steps {
-             echo 'Notify GitLab'
-             updateGitlabCommitStatus name: 'build', state: 'pending'
-             updateGitlabCommitStatus name: 'build', state: 'success'
-          }
-       }
+        stage ('Build Stage') {
+            agent none
+            steps {
+                script {
+                    stage ('Checkout') {
+                        echo 'THIS IS FOR CLONEING'
+                        git branch: branch, credentialsId: credentialsId, url: scmUrl
+                    }
+                    stage ('BUILD') {
+					    sh 'gradle task '
+                        
+                    }
+				}
+			}
+		}
     }
- }
+post {
+  success {
+     
+      sh 'curl "https://api.GitHub.com/repos/dileep1314/https://github.com/Dileep1314/new-gradle.git/statuses/$GIT_COMMIT?access_token=993612a65cb1754011e7abbdf3808ee110580990" \
+  -H "Content-Type: application/json" \
+  -X POST \
+  -d "{\"state\": \"success\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"http://localhost:8080/job/pipiline//$BUILD_NUMBER/console\"}"'
+    }
+  failure {
+    
+      sh 'curl "https://api.GitHub.com/repos/dileep1314/https://github.com/Dileep1314/new-gradle.git/statuses/$GIT_COMMIT?access_token=993612a65cb1754011e7abbdf3808ee110580990" \
+  -H "Content-Type: application/json" \
+  -X POST \
+  -d "{\"state\": \"failure\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"http://localhost:8080/job/pipiline//$BUILD_NUMBER/console\"}"'
+    }
+  }
+}
+
+
+
+
+

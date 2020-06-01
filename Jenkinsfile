@@ -17,7 +17,7 @@ Secret getStringCredential(String id) {
 
 Integer findCommentIdByUser(String credential, String repository, String pr_number, String username, String expression = '') {
 	Secret gh_token = getStringCredential(credential)
-	String api_endpoint = "https://github.com/Dileep1314/new-gradle.git/${repository}/issues/${pr_number}/comments"
+	String api_endpoint = "https://github.com/Dileep1314/new-gradle.git/issues/${pr_number}/comments"
     Reader reader = new URL(api_endpoint).newReader(requestProperties: ['Authorization': "token ${gh_token}".toString(), 'Accept': 'application/vnd.github.v3+json'])
     new JsonSlurper().parse(reader).find {
         it?.user?.login == username && (
@@ -32,7 +32,7 @@ void postGHPRComment(String credential, String repository, String pr_number, Str
 	Map data = [
 		body: message
 	]
-	String api_endpoint = "https://github.com/Dileep1314/new-gradle.git${repository}/issues"
+	String api_endpoint = "https://github.com/Dileep1314/new-gradle.git$/issues"
     if(comment_id) {
         api_endpoint += "/comments/${comment_id}"
 	    method = 'PATCH'

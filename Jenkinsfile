@@ -58,5 +58,5 @@ String message = '''
 This is a new kind of comment.
 '''.trim()
 String pattern = '^# heading 1.*'
-int id = findCommentIdByUser('gittoken', ' Dileep1314/new-gradle ', '6', 'samrocketman', pattern)
+int id = findCommentIdByUser('gittoken', ' Dileep1314/new-gradle ', '6', 'dileep1314', pattern)
 postGHPRComment('gittoken', ' Dileep1314/new-gradle ', '6', message, id)
